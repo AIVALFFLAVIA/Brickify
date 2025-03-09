@@ -4,38 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if client %}Edit Client{% else %}Add Client{% endif %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
 </head>
 <body>
-    <h1>{% if client %}Edit Client{% else %}Add Client{% endif %}</h1>
 
-    <form method="POST">
-        {% csrf_token %}
-        <label for="name">Name:</label>
-        <input type="text" name="name" id="name" value="{% if client %}{{ client.name }}{% endif %}" required>
+    {% include 'navbar.html' %}
 
-        <label for="contact_info">Contact Info:</label>
-        <textarea name="contact_info" id="contact_info" required>{% if client %}{{ client.contact_info }}{% endif %}</textarea>
+    <div class="form-wrapper">
+        <div class="form-card">
+            <h1>{% if client %}Edit Client{% else %}Add Client{% endif %}</h1>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" id="email" value="{% if client %}{{ client.email }}{% endif %}" required>
+            <form method="POST" class="company-form" id="client-form">
+                {% csrf_token %}
+                
+                <!-- First row with 3 fields -->
+                <div class="input-group row">
+                    <div class="field">
+                        <label for="name">Name:</label>
+                        <input type="text" name="name" id="name" value="{% if client %}{{ client.name }}{% endif %}" required>
+                        <div class="error-message" id="name-error">Please provide a valid name.</div>
+                    </div>
+                    <div class="field">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email" value="{% if client %}{{ client.email }}{% endif %}" required>
+                        <div class="error-message" id="email-error">Please enter a valid email address.</div>
+                    </div>
+                    <div class="field">
+                        <label for="contact_info">Contact Info:</label>
+                        <textarea name="contact_info" id="contact_info" required>{% if client %}{{ client.contact_info }}{% endif %}</textarea>
+                        <div class="error-message" id="contact_info-error">Please provide valid contact information.</div>
+                    </div>
+                </div>
 
-        <label for="address">Address:</label>
-        <textarea name="address" id="address" required>{% if client %}{{ client.address }}{% endif %}</textarea>
+                <!-- Second row with 3 fields -->
+                <div class="input-group row">
+                    <div class="field">
+                        <label for="address">Address:</label>
+                        <textarea name="address" id="address" required>{% if client %}{{ client.address }}{% endif %}</textarea>
+                        <div class="error-message" id="address-error">Please provide a valid address.</div>
+                    </div>
+                    <div class="field">
+                        <label for="company">Company:</label>
+                        <select name="company" id="company" required>
+                            <option value="">Select a Company</option>
+                            {% for company in companies %}
+                                <option value="{{ company.id }}" {% if client and client.company.id == company.id %}selected{% endif %}>
+                                    {{ company.name }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                        <div class="error-message" id="company-error">Please select a company.</div>
+                    </div>
+                </div>
 
-        <label for="company">Company:</label>
-        <select name="company" id="company" required>
-            <option value="">Select a Company</option>
-            {% for company in companies %}
-                <option value="{{ company.id }}" {% if client and client.company.id == company.id %}selected{% endif %}>
-                    {{ company.name }}
-                </option>
-            {% endfor %}
-        </select>
-        
+                <button type="submit" class="submit-button">{% if client %}Update{% else %}Create{% endif %}</button>
+            </form>
 
-        <button type="submit">{% if client %}Update{% else %}Create{% endif %}</button>
-    </form>
+            <a href="{% url 'client_list' %}" class="back-link">Back to Client List</a>
+        </div>
+    </div>
 
-    <a href="{% url 'client_list' %}">Back to Client List</a>
+    {% include 'footer.html' %}
+    
+    <script>
+        // Show error messages when input is invalid
+        document.getElementById('client-form').addEventListener('submit', function (event) {
+            const inputs = document.querySelectorAll('input[required], textarea[required], select[required]');
+            inputs.forEach(input => {
+                const errorMessage = document.getElementById(input.id + '-error');
+                if (!input.validity.valid) {
+                    errorMessage.style.display = 'block';
+                } else {
+                    errorMessage.style.display = 'none';
+                }
+            });
+        });
+
+        // Hide the error messages initially
+        document.querySelectorAll('.error-message').forEach(msg => msg.style.display = 'none');
+    </script>
 </body>
 </html>

@@ -8,8 +8,11 @@
     <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 </head>
 <body>
-     <!-- Include Navbar -->
-     {% include 'navbar.html' %}
+    <nav class="navbar">
+        <a href="#" onclick="window.location.reload();">Home</a>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+    </nav>
 
     <div class="content">
         <h1>Welcome to the Dashboard</h1>

@@ -1,0 +1,162 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #F5F5F5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    color: #4682B4;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Wrapper */
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px; /* Increased padding around the form */
+    box-sizing: border-box; /* Ensure the padding doesn't affect the layout */
+}
+
+.form-card {
+    background: linear-gradient(135deg, #D8B800, #4682B4);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    padding: 40px;
+    width: 100%;
+    max-width: 1200px; /* Max width to accommodate 3 fields */
+    text-align: center;
+    color: white;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Form Styles */
+.company-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Row Layout for fields */
+.input-group.row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 40px; /* Increased gap between fields */
+    margin-bottom: 30px; /* Increased margin between rows */
+}
+
+.input-group.row .field {
+    width: 31%; /* 3 fields per row with more spacing */
+}
+
+/* General Input Group Style */
+.input-group {
+    width: 100%;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #fff;
+    font-weight: bold;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #FFF;
+    font-size: 16px;
+    color: #333;
+    transition: border 0.3s ease;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+select {
+    padding: 15px;
+    background-color: #FFF;
+    font-size: 16px;
+    color: #333;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border: 2px solid #4682B4;
+}
+
+/* Error Messages */
+.error-message {
+    display: none; /* Initially hidden */
+    position: absolute;
+    bottom: -20px;
+    font-size: 12px;
+    color: #FF6B6B;
+}
+
+/* Button Styles */
+.submit-button {
+    padding: 15px;
+    background-color: #D8B800;
+    border-radius: 8px;
+    border: none;
+    font-size: 18px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+.submit-button:hover {
+    background-color: #C75B42;
+}
+
+/* Hover and Focus Effects */
+.input-group input:focus, .input-group select:focus, .input-group textarea:focus {
+    border: 2px solid #D8B800;
+}
+
+/* Back Link */
+.back-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+    margin-top: 20px;
+    display: inline-block;
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.back-link:hover {
+    color: #C75B42;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
