@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if employee %}Edit{% else %}Create{% endif %} Employee</title>
+</head>
+<body>
+    <h1>{% if employee %}Edit{% else %}Create{% endif %} Employee</h1>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" id="first_name" value="{{ employee.first_name|default:'' }}" required><br><br>
+        
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" id="last_name" value="{{ employee.last_name|default:'' }}" required><br><br>
+        
+        <label for="position">Position:</label>
+        <select name="position" id="position" required>
+            {% for value, label in position_choices %}
+                <option value="{{ value }}" {% if employee and employee.position == value %}selected{% endif %}>{{ label }}</option>
+            {% endfor %}
+        </select><br><br>
+               
+        
+        <label for="salary">Salary:</label>
+        <input type="number" step="0.01" name="salary" id="salary" value="{{ employee.salary|default:'' }}" required><br><br>
+        
+        <label for="project">Project:</label>
+        <select name="project" id="project">
+            <option value="">Select a Project</option>
+            {% for project in projects %}
+                <option value="{{ project.id }}" {% if employee and employee.project.id == project.id %}selected{% endif %}>{{ project.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <label for="company">Company:</label>
+        <select name="company" id="company" required>
+            <option value="">Select a Company</option>
+            {% for company in companies %}
+                <option value="{{ company.id }}" {% if employee and employee.company.id == company.id %}selected{% endif %}>{{ company.name }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <button type="submit">{% if employee %}Update{% else %}Create{% endif %} Employee</button>
+    </form>
+    
+    <a href="{% url 'employee_list' %}">Back to Employee List</a>
+</body>
+</html>

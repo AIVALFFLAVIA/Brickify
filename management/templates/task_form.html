@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if task %}Update{% else %}Create{% endif %} Task</title>
+</head>
+<body>
+    <h1>{% if task %}Update{% else %}Create{% endif %} Task</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <!-- Project Selection -->
+        <label for="project">Project:</label>
+        <select name="project" id="project" required>
+            <option value="">Select a Project</option>
+            {% for project in projects %}
+                <option value="{{ project.id }}" {% if task and task.project.id == project.id %}selected{% endif %}>
+                    {{ project.name }}
+                </option>
+            {% endfor %}
+        </select><br><br>
+
+        <!-- Task Name -->
+        <label for="task_name">Task Name:</label>
+        <input type="text" name="task_name" id="task_name" 
+               value="{% if task %}{{ task.task_name }}{% endif %}" required><br><br>
+
+        <!-- Assigned To (Employee) Selection -->
+        <label for="assigned_to">Assigned To:</label>
+        <select name="assigned_to" id="assigned_to" required>
+            <option value="">Select an Employee</option>
+            {% for employee in employees %}
+                <option value="{{ employee.id }}" {% if task and task.assigned_to.id == employee.id %}selected{% endif %}>
+                    {{ employee.name }}
+                </option>
+            {% endfor %}
+        </select><br><br>        
+
+        <!-- Status Selection -->
+        <label for="status">Status:</label>
+        <select name="status" id="status" required>
+            <option value="Pending" {% if task and task.status == 'Pending' %}selected{% endif %}>Pending</option>
+            <option value="In Progress" {% if task and task.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+            <option value="Completed" {% if task and task.status == 'Completed' %}selected{% endif %}>Completed</option>
+        </select><br><br>
+
+        <!-- Deadline -->
+        <label for="deadline">Deadline:</label>
+        <input type="date" name="deadline" id="deadline" 
+               value="{% if task %}{{ task.deadline|date:'Y-m-d' }}{% endif %}" required><br><br>
+
+        <!-- Submit Button -->
+        <button type="submit">{% if task %}Update{% else %}Create{% endif %} Task</button>
+    </form>
+
+    <a href="{% url 'task_list' %}">Back to Task List</a>
+</body>
+</html>

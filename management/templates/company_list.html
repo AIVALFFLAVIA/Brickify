@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Company List</title>
+</head>
+<body>
+    <h1>Company List</h1>
+
+    <!-- Sorting and Filtering Form -->
+    <form method="get">
+        <label for="search">Search:</label>
+        <input type="text" name="search" id="search" value="{{ search_query }}">
+        
+        <label for="sort">Sort By:</label>
+        <select name="sort" id="sort">
+            <option value="name" {% if sort_by == "name" %}selected{% endif %}>Name</option>
+            <option value="contact_email" {% if sort_by == "contact_email" %}selected{% endif %}>Email</option>
+        </select>
+
+        <button type="submit">Apply Filters</button>
+    </form>
+
+    <a href="{% url 'management:company_create' %}">Create Company</a>
+    <ul>
+        {% for company in companies %}
+            <li>
+                {{ company.name }} - {{ company.contact_email }}
+                <a href="{% url 'management:company_update' company.id %}">Edit</a> |
+                <a href="{% url 'management:company_delete' company.id %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'management:leader_dashboard' %}">
+        <button>Go Back</button>
+    </a>
+    
+</body>
+</html>

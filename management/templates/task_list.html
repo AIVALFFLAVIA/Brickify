@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+</head>
+<body>
+    <h1>Task List</h1>
+
+    <!-- Filtering and Sorting Form -->
+    <form method="get">
+        <label for="search">Search by Task Name:</label>
+        <input type="text" name="search" id="search" value="{{ search_query }}">
+
+        <label for="sort">Sort By:</label>
+        <select name="sort" id="sort">
+            <option value="deadline" {% if sort_by == "deadline" %}selected{% endif %}>Deadline</option>
+            <option value="task_name" {% if sort_by == "task_name" %}selected{% endif %}>Task Name</option>
+        </select>
+
+        <button type="submit">Apply Filters</button>
+    </form>
+
+    <a href="{% url 'management:task_create' %}">Create New Task</a><br><br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>Task Name</th>
+                <th>Assigned To</th>
+                <th>Status</th>
+                <th>Deadline</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in tasks %}
+                <tr>
+                    <td>{{ task.project.name }}</td>
+                    <td>{{ task.task_name }}</td>
+                    <td>
+                        {% if task.assigned_to %}
+                            {{ task.assigned_to.name }}
+                        {% else %}
+                            Not Assigned
+                        {% endif %}
+                    </td>
+                    <td>{{ task.status }}</td>
+                    <td>{{ task.deadline }}</td>
+                    <td>
+                        <a href="{% url 'management:task_update' task.id %}">Edit</a> | 
+                        <a href="{% url 'management:task_delete' task.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">No tasks found matching the filters.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'management:leader_dashboard' %}">
+        <button>Go Back</button>
+    </a>
+
+</body>
+</html>

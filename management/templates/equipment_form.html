@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if equipment %}Update{% else %}Create{% endif %} Equipment</title>
+</head>
+<body>
+    <h1>{% if equipment %}Update{% else %}Create{% endif %} Equipment</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="{{ equipment.name|default:'' }}" required><br><br>
+
+        <label for="status">Status:</label>
+        <select name="status" id="status" required>
+            <option value="Available" {% if equipment and equipment.status == 'Available' %}selected{% endif %}>Available</option>
+            <option value="In Use" {% if equipment and equipment.status == 'In Use' %}selected{% endif %}>In Use</option>
+            <option value="Maintenance" {% if equipment and equipment.status == 'Maintenance' %}selected{% endif %}>Maintenance</option>
+        </select><br><br>
+
+        <label for="purchase_date">Purchase Date:</label>
+        <input type="date" name="purchase_date" id="purchase_date" value="{{ equipment.purchase_date|date:'Y-m-d' }}" required><br><br>
+
+        <label for="company">Company:</label>
+        <select name="company" id="company" required>
+            <option value="">Select a Company</option>
+            {% for company in companies %}
+                <option value="{{ company.id }}" {% if equipment and equipment.company.id == company.id %}selected{% endif %}>{{ company.name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">{% if equipment %}Update{% else %}Create{% endif %} Equipment</button>
+    </form>
+
+    <a href="{% url 'equipment_list' %}">Back to Equipment List</a>
+</body>
+</html>

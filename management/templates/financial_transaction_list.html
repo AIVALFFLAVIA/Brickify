@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Transactions List</title>
+</head>
+<body>
+    <h1>Financial Transactions List</h1>
+
+    <!-- Filtering and Sorting Form -->
+    <form method="get">
+        <label for="search">Search by Description:</label>
+        <input type="text" name="search" id="search" value="{{ search_query }}">
+
+        <label for="transaction_type">Filter by Transaction Type:</label>
+        <select name="transaction_type" id="transaction_type">
+            <option value="">All</option>
+            <option value="income" {% if transaction_type_filter == "income" %}selected{% endif %}>Income</option>
+            <option value="expense" {% if transaction_type_filter == "expense" %}selected{% endif %}>Expense</option>
+        </select>
+
+        <label for="sort">Sort By:</label>
+        <select name="sort" id="sort">
+            <option value="date" {% if sort_by == "date" %}selected{% endif %}>Date</option>
+            <option value="amount" {% if sort_by == "amount" %}selected{% endif %}>Amount</option>
+        </select>
+
+        <button type="submit">Apply Filters</button>
+    </form>
+
+    <a href="{% url 'management:financial_transaction_create' %}">Create New Transaction</a><br><br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Project</th>
+                <th>Amount</th>
+                <th>Transaction Type</th>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Company</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.project.name }}</td>
+                    <td>{{ transaction.amount }}</td>
+                    <td>{{ transaction.transaction_type }}</td>
+                    <td>{{ transaction.date }}</td>
+                    <td>{{ transaction.description }}</td>
+                    <td>{{ transaction.company.name }}</td>
+                    <td>
+                        <a href="{% url 'management:financial_transaction_update' transaction.id %}">Edit</a> | 
+                        <a href="{% url 'management:financial_transaction_delete' transaction.id %}">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="7">No financial transactions found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'management:leader_dashboard' %}">
+        <button>Go Back</button>
+    </a>
+
+</body>
+</html>

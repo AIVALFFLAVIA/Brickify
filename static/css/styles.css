@@ -1,0 +1,114 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F5F5F5; /* Light Grey */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .form-container {
+    background-color: #FFFFFF; /* White */
+    padding: 40px 30px;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  h2 {
+    color: #C75B42; /* Brick Red */
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+  
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .form-group {
+    text-align: left;
+  }
+  
+  .field-container {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  input, select, button {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #B0B0B0; /* Concrete Grey */
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 5px;
+  }
+  
+  input:focus, select:focus, button:focus {
+    outline: none;
+    border-color: #4682B4; /* Steel Blue */
+  }
+  
+  button {
+    background-color: #D8B800; /* Yellow Ochre */
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  button:hover {
+    background-color: #C49F00; /* Darker Yellow Ochre */
+  }
+  
+  .auth-link {
+    margin-top: 20px;
+  }
+  
+  .auth-link a {
+    color: #4682B4; /* Steel Blue */
+    text-decoration: none;
+  }
+  
+  .auth-link a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Error messages */
+  .invalid-feedback {
+    color: red;
+    font-size: 14px;
+    display: block; /* Show error messages */
+  }
+  
+  /* Invalid input styling */
+  input:invalid, select:invalid {
+    border-color: red;
+  }
+  
+  input:invalid + .invalid-feedback, select:invalid + .invalid-feedback {
+    display: block;
+  }
+  
+  /* Only show error message if the form is not valid */
+  input:valid, select:valid {
+    border-color: #B0B0B0; /* Concrete Grey */
+  }
+  
+  .error-messages p {
+    color: red;
+    font-weight: bold;
+}

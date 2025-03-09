@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+</head>
+<body>
+    <h2>Welcome, {{ user.username }} (Admin)</h2>
+    <p>You have full access to the system.</p>
+    <ul>
+        <li><a href="{% url 'logout' %}">Logout</a></li>
+    </ul>
+</body>
+</html>

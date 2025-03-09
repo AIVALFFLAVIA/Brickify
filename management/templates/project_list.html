@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project List</title>
+</head>
+<body>
+    <h1>Project List</h1>
+
+    <!-- Sorting and Filtering Form -->
+    <form method="get">
+        <label for="search">Search by Name:</label>
+        <input type="text" name="search" id="search" value="{{ search_query }}">
+
+        <label for="sort">Sort Projects By:</label>
+        <select name="sort" id="sort">
+            <option value="name" {% if sort_by == "name" %}selected{% endif %}>Name</option>
+            <option value="client__name" {% if sort_by == "client__name" %}selected{% endif %}>Client</option>
+            <option value="status" {% if sort_by == "status" %}selected{% endif %}>Status</option>
+            <option value="start_date" {% if sort_by == "start_date" %}selected{% endif %}>Start Date</option>
+            <option value="budget" {% if sort_by == "budget" %}selected{% endif %}>Budget</option>
+        </select>
+
+        <button type="submit">Apply Filters</button>
+    </form>
+
+    <a href="{% url 'management:project_create' %}">Create New Project</a>
+    <br><br>
+    
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Client</th>
+                <th>Company</th>
+                <th>Location</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Budget</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+            <tr>
+                <td>{{ project.name }}</td>
+                <td>{{ project.client.name }}</td>
+                <td>{{ project.company.name }}</td>
+                <td>{{ project.location }}</td>
+                <td>{{ project.start_date }}</td>
+                <td>{{ project.end_date|default:"N/A" }}</td>
+                <td>${{ project.budget }}</td>
+                <td>{{ project.status }}</td>
+                <td>
+                    <a href="{% url 'management:project_update' project.id %}">Edit</a> |
+                    <a href="{% url 'management:project_delete' project.id %}" onclick="return confirm('Are you sure?');">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="9">No projects found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'management:leader_dashboard' %}">
+        <button>Go Back</button>
+    </a>
+</body>
+</html>

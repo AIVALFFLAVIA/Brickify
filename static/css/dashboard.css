@@ -1,0 +1,130 @@
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #F5F5F5; /* Light Grey */
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #C75B42; /* Brick Red */
+    padding: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.navbar a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 15px;
+    transition: background-color 0.3s;
+}
+
+.navbar a:hover {
+    background-color: #4682B4; /* Steel Blue */
+    border-radius: 5px;
+}
+
+/* Content styling for both Dashboards */
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+.content h1, .content h2 {
+    color: #C75B42; /* Brick Red */
+}
+
+.content p {
+    font-size: 18px;
+}
+
+/* Bottom bar styling */
+.bottom-bar {
+    background-color: #4682B4; /* Steel Blue */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* General Button Container */
+.button-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 buttons per row */
+    gap: 20px; /* Space between buttons */
+    margin: 20px 0;
+    justify-items: center; /* Center buttons */
+}
+
+/* Button Styling */
+.btn {
+    background-color: #4682B4; /* Steel Blue */
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    border-radius: 8px;
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #C75B42; /* Brick Red */
+}
+
+/* General Button Styling */
+.logout-btn {
+    background-color: #C75B42; /* Brick Red */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #8B4513; /* Earthy Brown for hover effect */
+}
+
+/* Icon Styling */
+.icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    font-size: 18px; /* Adjust icon size */
+}
+
+/* Specific styles for Leader Dashboard links */
+.content h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #C75B42; /* Brick Red */
+}
+
+.content p {
+    font-size: 18px;
+    color: #333;
+}
+
+/* Optional: Make buttons responsive on smaller screens */
+@media (max-width: 768px) {
+    .button-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 buttons per row on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .button-container {
+        grid-template-columns: 1fr; /* 1 button per row on very small screens */
+    }
+}

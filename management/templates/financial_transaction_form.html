@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if transaction %}Update{% else %}Create{% endif %} Financial Transaction</title>
+</head>
+<body>
+    <h1>{% if transaction %}Update{% else %}Create{% endif %} Financial Transaction</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="project">Project:</label>
+        <select name="project" id="project" required>
+            <option value="">Select a Project</option>
+            {% for project in projects %}
+                <option value="{{ project.id }}" {% if transaction and transaction.project.id == project.id %}selected{% endif %}>{{ project.name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="amount">Amount:</label>
+        <input type="number" step="0.01" name="amount" id="amount" value="{{ transaction.amount|default:'' }}" required><br><br>
+
+        <label for="transaction_type">Transaction Type:</label>
+        <select name="transaction_type" id="transaction_type" required>
+            <option value="Expense" {% if transaction and transaction.transaction_type == 'Expense' %}selected{% endif %}>Expense</option>
+            <option value="Payment Received" {% if transaction and transaction.transaction_type == 'Payment Received' %}selected{% endif %}>Payment Received</option>
+        </select><br><br>
+
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date" value="{{ transaction.date|date:'Y-m-d' }}" required><br><br>
+
+        <label for="description">Description:</label>
+        <textarea name="description" id="description" required>{{ transaction.description|default:'' }}</textarea><br><br>
+
+        <label for="company">Company:</label>
+        <select name="company" id="company" required>
+            <option value="">Select a Company</option>
+            {% for company in companies %}
+                <option value="{{ company.id }}" {% if transaction and transaction.company.id == company.id %}selected{% endif %}>{{ company.name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">{% if transaction %}Update{% else %}Create{% endif %} Financial Transaction</button>
+    </form>
+
+    <a href="{% url 'financial_transaction_list' %}">Back to Financial Transaction List</a>
+</body>
+</html>

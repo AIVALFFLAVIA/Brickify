@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <!-- Change the Home link to refresh the current page -->
+        <a href="#" onclick="window.location.reload();">Home</a>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">Register</a>
+    </nav>
+
+    <div class="content">
+        <h1>Welcome to the Dashboard</h1>
+        <p>This is a read-only dashboard. Please <a href="{% url 'login' %}">log in</a> to access more features.</p>
+    </div>
+
+    <footer class="bottom-bar">
+        <p>Bottom bar content here</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if client %}Edit Client{% else %}Add Client{% endif %}</title>
+</head>
+<body>
+    <h1>{% if client %}Edit Client{% else %}Add Client{% endif %}</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="{% if client %}{{ client.name }}{% endif %}" required>
+
+        <label for="contact_info">Contact Info:</label>
+        <textarea name="contact_info" id="contact_info" required>{% if client %}{{ client.contact_info }}{% endif %}</textarea>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="{% if client %}{{ client.email }}{% endif %}" required>
+
+        <label for="address">Address:</label>
+        <textarea name="address" id="address" required>{% if client %}{{ client.address }}{% endif %}</textarea>
+
+        <label for="company">Company:</label>
+        <select name="company" id="company" required>
+            <option value="">Select a Company</option>
+            {% for company in companies %}
+                <option value="{{ company.id }}" {% if client and client.company.id == company.id %}selected{% endif %}>
+                    {{ company.name }}
+                </option>
+            {% endfor %}
+        </select>
+        
+
+        <button type="submit">{% if client %}Update{% else %}Create{% endif %}</button>
+    </form>
+
+    <a href="{% url 'client_list' %}">Back to Client List</a>
+</body>
+</html>

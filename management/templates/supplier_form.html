@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if supplier %}Update{% else %}Create{% endif %} Supplier</title>
+</head>
+<body>
+    <h1>{% if supplier %}Update{% else %}Create{% endif %} Supplier</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" value="{{ supplier.name|default:'' }}" required><br><br>
+
+        <label for="contact_info">Contact Info:</label>
+        <textarea name="contact_info" id="contact_info" required>{{ supplier.contact_info|default:'' }}</textarea><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="{{ supplier.email|default:'' }}" required><br><br>
+
+        <label for="company">Company:</label>
+        <select name="company" id="company" required>
+            <option value="">Select a Company</option>
+            {% for company in companies %}
+                <option value="{{ company.id }}" {% if supplier and supplier.company.id == company.id %}selected{% endif %}>{{ company.name }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">{% if supplier %}Update{% else %}Create{% endif %} Supplier</button>
+    </form>
+
+    <a href="{% url 'supplier_list' %}">Back to Supplier List</a>
+</body>
+</html>
