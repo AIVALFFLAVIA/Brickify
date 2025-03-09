@@ -4,67 +4,83 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/templates.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 </head>
 <body>
-    <h1>Employee List</h1>
 
-    <!-- Sorting and Filtering Form -->
-    <form method="get">
-        <label for="search">Search by First Name:</label>
-        <input type="text" name="search" id="search" value="{{ search_query }}">
+<!-- Include Navbar -->
+{% include 'navbar.html' %}
 
-        <label for="sort">Sort By:</label>
-        <select name="sort" id="sort">
-            <option value="first_name" {% if sort_by == "first_name" %}selected{% endif %}>First Name</option>
-            <option value="last_name" {% if sort_by == "last_name" %}selected{% endif %}>Last Name</option>
-            <option value="position" {% if sort_by == "position" %}selected{% endif %}>Position</option>
-            <option value="salary" {% if sort_by == "salary" %}selected{% endif %}>Salary</option>
-            <option value="company__name" {% if sort_by == "company__name" %}selected{% endif %}>Company</option>
-            <option value="project__name" {% if sort_by == "project__name" %}selected{% endif %}>Project</option>
-        </select>
+    <div class="container">
+        <!-- Sidebar for Sorting & Filtering -->
+        <aside class="sidebar">
+            <h3>Filter & Sort</h3>
+            <form method="get">
+                <label for="search">Search by First Name:</label>
+                <input type="text" name="search" id="search" value="{{ search_query }}" placeholder="Search">
 
-        <button type="submit">Apply Filters</button>
-    </form>
+                <label for="sort">Sort By:</label>
+                <select name="sort" id="sort">
+                    <option value="first_name" {% if sort_by == "first_name" %}selected{% endif %}>First Name</option>
+                    <option value="last_name" {% if sort_by == "last_name" %}selected{% endif %}>Last Name</option>
+                    <option value="position" {% if sort_by == "position" %}selected{% endif %}>Position</option>
+                    <option value="salary" {% if sort_by == "salary" %}selected{% endif %}>Salary</option>
+                    <option value="company__name" {% if sort_by == "company__name" %}selected{% endif %}>Company</option>
+                    <option value="project__name" {% if sort_by == "project__name" %}selected{% endif %}>Project</option>
+                </select>
 
-    <a href="{% url 'management:employee_create' %}">Create New Employee</a>
-    <br><br>
-    
-    <table border="1">
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Position</th>
-                <th>Salary</th>
-                <th>Project</th>
-                <th>Company</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for employee in employees %}
-            <tr>
-                <td>{{ employee.first_name }}</td>
-                <td>{{ employee.last_name }}</td>
-                <td>{{ employee.position }}</td>
-                <td>${{ employee.salary }}</td>
-                <td>{{ employee.project.name|default:"N/A" }}</td>
-                <td>{{ employee.company.name }}</td>
-                <td>
-                    <a href="{% url 'management:employee_update' employee.id %}">Edit</a> |
-                    <a href="{% url 'management:employee_delete' employee.id %}" onclick="return confirm('Are you sure?');">Delete</a>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="7">No employees found.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                <button type="submit">Apply Filters</button>
+            </form>
+        </aside>
 
-    <a href="{% url 'management:leader_dashboard' %}">
-        <button>Go Back</button>
-    </a>
+        <!-- Main Content -->
+        <section class="content">
+            <h1>Employee List</h1>
+            <div class="action-buttons">
+                <a href="{% url 'management:employee_create' %}" class="add-button">Create New Employee</a>
+                <a href="{% url 'management:leader_dashboard' %}" class="go-back">Go Back</a>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Position</th>
+                        <th>Salary</th>
+                        <th>Project</th>
+                        <th>Company</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in employees %}
+                        <tr>
+                            <td>{{ employee.first_name }}</td>
+                            <td>{{ employee.last_name }}</td>
+                            <td>{{ employee.position }}</td>
+                            <td>${{ employee.salary }}</td>
+                            <td>{{ employee.project.name|default:"N/A" }}</td>
+                            <td>{{ employee.company.name }}</td>
+                            <td class="action-buttons">
+                                <a href="{% url 'management:employee_update' employee.id %}" class="edit">Edit</a>
+                                <a href="{% url 'management:employee_delete' employee.id %}" class="delete" onclick="return confirm('Are you sure?');">Delete</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="7">No employees found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Include Footer -->
+    {% include 'footer.html' %}
+
 </body>
 </html>

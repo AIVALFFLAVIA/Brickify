@@ -6,14 +6,24 @@ body {
     padding: 0;
 }
 
+/* Navbar styling */
 .navbar {
     background-color: #C75B42; /* Brick Red */
     padding: 15px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    width: 100%; /* Make sure it spans the full width */
+    max-width: 100%; /* Ensure no max-width limitation */
+    margin: 0; /* Remove any margin */
+    box-sizing: border-box; /* Include padding in width/height calculations */
+    position: fixed; /* Keep it fixed at the top */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Make sure it stays on top of the page content */
 }
 
+/* Navbar link styling */
 .navbar a {
     color: #FFFFFF;
     text-decoration: none;
@@ -22,6 +32,7 @@ body {
     transition: background-color 0.3s;
 }
 
+/* Navbar link hover effect */
 .navbar a:hover {
     background-color: #4682B4; /* Steel Blue */
     border-radius: 5px;
@@ -31,6 +42,7 @@ body {
 .content {
     padding: 20px;
     text-align: center;
+    margin-top: 70px; /* Add space so the content isn't hidden behind the navbar */
 }
 
 .content h1, .content h2 {
@@ -76,11 +88,12 @@ body {
     transition: background-color 0.3s ease;
 }
 
+/* Button hover effect */
 .btn:hover {
     background-color: #C75B42; /* Brick Red */
 }
 
-/* General Button Styling */
+/* Logout button styling */
 .logout-btn {
     background-color: #C75B42; /* Brick Red */
     color: white;
@@ -92,6 +105,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
+/* Logout button hover effect */
 .logout-btn:hover {
     background-color: #8B4513; /* Earthy Brown for hover effect */
 }

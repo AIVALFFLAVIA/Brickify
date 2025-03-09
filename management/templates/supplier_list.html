@@ -4,60 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supplier List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/templates.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
 </head>
 <body>
-    <h1>Supplier List</h1>
 
-    <!-- Sorting and Filtering Form -->
-    <form method="get">
-        <label for="search">Search:</label>
-        <input type="text" name="search" id="search" value="{{ search_query }}">
+<!-- Include Navbar -->
+{% include 'navbar.html' %}
 
-        <label for="sort">Sort By:</label>
-        <select name="sort" id="sort">
-            <option value="name" {% if sort_by == "name" %}selected{% endif %}>Name</option>
-            <option value="email" {% if sort_by == "email" %}selected{% endif %}>Email</option>
-            <option value="contact_info" {% if sort_by == "contact_info" %}selected{% endif %}>Contact Info</option>
-            <option value="company__name" {% if sort_by == "company__name" %}selected{% endif %}>Company</option>
-        </select>
+    <div class="container">
+        <!-- Sidebar for Filtering & Sorting -->
+        <aside class="sidebar">
+            <h3>Filter & Sort</h3>
+            <form method="get">
+                <label for="search">Search:</label>
+                <input type="text" name="search" id="search" value="{{ search_query }}" placeholder="Search">
 
-        <button type="submit">Apply Filters</button>
-    </form>
+                <label for="sort">Sort By:</label>
+                <select name="sort" id="sort">
+                    <option value="name" {% if sort_by == "name" %}selected{% endif %}>Name</option>
+                    <option value="email" {% if sort_by == "email" %}selected{% endif %}>Email</option>
+                    <option value="contact_info" {% if sort_by == "contact_info" %}selected{% endif %}>Contact Info</option>
+                    <option value="company__name" {% if sort_by == "company__name" %}selected{% endif %}>Company</option>
+                </select>
 
-    <a href="{% url 'management:supplier_create' %}">Create New Supplier</a><br><br>
-    
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Contact Info</th>
-                <th>Email</th>
-                <th>Company</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for supplier in suppliers %}
-                <tr>
-                    <td>{{ supplier.name }}</td>
-                    <td>{{ supplier.contact_info }}</td>
-                    <td>{{ supplier.email }}</td>
-                    <td>{{ supplier.company.name }}</td>
-                    <td>
-                        <a href="{% url 'management:supplier_update' supplier.id %}">Edit</a> | 
-                        <a href="{% url 'management:supplier_delete' supplier.id %}" onclick="return confirm('Are you sure you want to delete this supplier?')">Delete</a>
-                    </td>
-                </tr>
-            {% empty %}
-            <tr>
-                <td colspan="5">No suppliers found.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+                <button type="submit" class="btn-primary">Apply Filters</button>
+            </form>
+        </aside>
 
-    <a href="{% url 'management:leader_dashboard' %}">
-        <button>Go Back</button>
-    </a>
+        <!-- Main Content -->
+        <section class="content">
+            <h1>Supplier List</h1>
+            <div class="action-buttons">
+                <a href="{% url 'management:supplier_create' %}" class="add-button btn-yellow">Create New Supplier</a>
+                <a href="{% url 'management:leader_dashboard' %}" class="go-back btn-light-grey">Go Back</a>
+            </div>
+
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Contact Info</th>
+                        <th>Email</th>
+                        <th>Company</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for supplier in suppliers %}
+                        <tr>
+                            <td>{{ supplier.name }}</td>
+                            <td>{{ supplier.contact_info }}</td>
+                            <td>{{ supplier.email }}</td>
+                            <td>{{ supplier.company.name }}</td>
+                            <td class="action-buttons">
+                                <a href="{% url 'management:supplier_update' supplier.id %}" class="edit btn-steel-blue">Edit</a>
+                                <a href="{% url 'management:supplier_delete' supplier.id %}" class="delete btn-earthy-brown" onclick="return confirm('Are you sure you want to delete this supplier?')">Delete</a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5">No suppliers found.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Include Footer -->
+    {% include 'footer.html' %}
+
 </body>
 </html>

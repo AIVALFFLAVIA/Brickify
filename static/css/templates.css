@@ -1,0 +1,175 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #F5F5F5; /* Light Grey */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Ensures both sidebar and content start from the top */
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 60px; /* Below the navbar */
+    padding: 0 15px; /* Equal padding on both sides */
+    box-sizing: border-box;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 280px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 20px; /* Space between sidebar and content */
+    position: sticky;
+    top: 130px; /* Start just below navbar */
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+}
+
+/* Sidebar Title */
+.sidebar h3 {
+    color: #C75B42; /* Brick Red */
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/* Form Elements in Sidebar */
+.sidebar input,
+.sidebar select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.sidebar button {
+    width: 100%;
+    padding: 10px;
+    background-color: #D8B800; /* Yellow Ochre */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    background-color: #C49F00;
+}
+
+/* Content */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 20px; /* Space between content and sidebar */
+    min-height: 450px; /* Ensures content area grows with more items */
+}
+
+/* Content Title */
+.content h1 {
+    text-align: center;
+    color: #C75B42; /* Brick Red */
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+}
+
+th {
+    background-color: #C75B42; /* Brick Red */
+    color: white;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.action-buttons a {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    color: white;
+    text-decoration: none;
+    background-color: #4682B4; /* Steel Blue */
+    transition: background-color 0.3s;
+}
+
+.action-buttons a:hover {
+    background-color: #316C9C;
+}
+
+/* Go Back Button */
+.go-back {
+    background-color: #D8B800; /* Yellow Ochre */
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.go-back:hover {
+    background-color: #C49F00;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 0 20px; /* Ensure there's some padding for small screens */
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .content {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    table {
+        font-size: 14px;
+    }
+}
