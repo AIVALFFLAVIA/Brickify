@@ -3,8 +3,8 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', Arial, sans-serif;
-    background: #1c1c1c;
-    color: white;
+    font-weight: bold;
+    color:#34495e;
     text-align: center;
     overflow: hidden;
     position: relative;
@@ -38,19 +38,20 @@ body {
     align-items: center;
     height: 80vh;
     position: relative;
-    background-color: rgba(0, 0, 0, 0.7); /* Added background for contrast */
+    background: linear-gradient(135deg, #e67e22, #34495e);
     padding: 20px;
 }
 
 .hero h1 {
     font-size: 50px;
     text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.8);
-    color: #f39c12; /* Golden yellow for contrast */
+    color: #e67e22; /* Golden yellow for contrast */
 }
 
 .hero p {
     font-size: 22px;
     margin: 10px 0 20px;
+    font-style: italic;
 }
 
 /* Button Style */
@@ -59,7 +60,7 @@ body {
     font-size: 20px;
     font-weight: bold;
     color: black;
-    background: #f39c12; /* Warm yellow */
+    background: linear-gradient(135deg, #e67e22, #34495e);
     border: none;
     cursor: pointer;
     border-radius: 5px;
@@ -67,7 +68,7 @@ body {
 }
 
 .btn:hover {
-    background: #e67e22; /* Orange */
+    background: linear-gradient(135deg,  #34495e, #e67e22);/* Orange */
 }
 
 /* Floating Tool Icons */
