@@ -36,7 +36,7 @@ body {
 
 /* Sidebar Title */
 .sidebar h3 {
-    color: #e67e22;; /* Brick Red */
+    color: #e67e22; 
     font-size: 18px;
     margin-bottom: 15px;
 }
@@ -57,7 +57,7 @@ body {
 .sidebar button {
     width: 100%;
     padding: 10px;
-    background-color:  #34495e; /* Yellow Ochre */
+    background-color:  #34495e;
     color: white;
     border: none;
     border-radius: 5px;
