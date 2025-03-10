@@ -8,7 +8,7 @@ body {
 
 /* Navbar styling */
 .navbar {
-    background-color: #C75B42; /* Brick Red */
+    background-color: #34495e !important; 
     padding: 15px;
     display: flex;
     justify-content: space-around;
@@ -34,19 +34,20 @@ body {
 
 /* Navbar link hover effect */
 .navbar a:hover {
-    background-color: #4682B4; /* Steel Blue */
+    background-color: #e67e22 !important; 
     border-radius: 5px;
 }
 
 /* Content styling for both Dashboards */
 .content {
+    margin-top: 80px;
     padding: 20px;
     text-align: center;
     margin-top: 70px; /* Add space so the content isn't hidden behind the navbar */
 }
 
 .content h1, .content h2 {
-    color: #C75B42; /* Brick Red */
+    color:#e67e22 !important; /* Brick Red */
 }
 
 .content p {
@@ -55,7 +56,7 @@ body {
 
 /* Bottom bar styling */
 .bottom-bar {
-    background-color: #4682B4; /* Steel Blue */
+    background-color: #34495e  !important; /* Steel Blue */
     color: white;
     text-align: center;
     padding: 10px 0;
@@ -75,7 +76,7 @@ body {
 
 /* Button Styling */
 .btn {
-    background-color: #4682B4; /* Steel Blue */
+    background-color: #34495e  !important; /* Steel Blue */
     color: white;
     text-decoration: none;
     padding: 15px 20px;
@@ -90,12 +91,12 @@ body {
 
 /* Button hover effect */
 .btn:hover {
-    background-color: #C75B42; /* Brick Red */
+    background-color: #e67e22 !important; /* Brick Red */
 }
 
 /* Logout button styling */
 .logout-btn {
-    background-color: #C75B42; /* Brick Red */
+    background-color: #e67e22 !important; /* Brick Red */
     color: white;
     padding: 10px 20px;
     border: none;
@@ -107,7 +108,7 @@ body {
 
 /* Logout button hover effect */
 .logout-btn:hover {
-    background-color: #8B4513; /* Earthy Brown for hover effect */
+    background-color: #34495e !important; /* Earthy Brown for hover effect */
 }
 
 /* Icon Styling */

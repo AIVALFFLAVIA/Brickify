@@ -36,7 +36,7 @@ body {
 
 /* Sidebar Title */
 .sidebar h3 {
-    color: #C75B42; /* Brick Red */
+    color: #e67e22;; /* Brick Red */
     font-size: 18px;
     margin-bottom: 15px;
 }
@@ -57,7 +57,7 @@ body {
 .sidebar button {
     width: 100%;
     padding: 10px;
-    background-color: #D8B800; /* Yellow Ochre */
+    background-color:  #34495e; /* Yellow Ochre */
     color: white;
     border: none;
     border-radius: 5px;
@@ -66,9 +66,9 @@ body {
 }
 
 .sidebar button:hover {
-    background-color: #C49F00;
+    background-color: #e67e22;
 }
-
+ 
 /* Content */
 .content {
     flex-grow: 1;
@@ -83,7 +83,7 @@ body {
 /* Content Title */
 .content h1 {
     text-align: center;
-    color: #C75B42; /* Brick Red */
+    color: #e67e22;; /* Brick Red */
     font-size: 28px;
     margin-bottom: 20px;
 }
@@ -106,7 +106,7 @@ th, td {
 }
 
 th {
-    background-color: #C75B42; /* Brick Red */
+    background-color:#e67e22; /* Brick Red */
     color: white;
 }
 
@@ -130,17 +130,17 @@ tbody tr:hover {
     font-size: 16px;
     color: white;
     text-decoration: none;
-    background-color: #4682B4; /* Steel Blue */
+    background-color: #34495e; /* Steel Blue */
     transition: background-color 0.3s;
 }
 
 .action-buttons a:hover {
-    background-color: #316C9C;
+    background-color:  #e67e22;
 }
 
 /* Go Back Button */
 .go-back {
-    background-color: #D8B800; /* Yellow Ochre */
+    background-color: #34495e; /* Yellow Ochre */
     color: white;
     padding: 10px 15px;
     border-radius: 5px;
@@ -149,7 +149,7 @@ tbody tr:hover {
 }
 
 .go-back:hover {
-    background-color: #C49F00;
+    background-color:#e67e22;
 }
 
 /* Responsive Design */

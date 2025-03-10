@@ -11,8 +11,8 @@ body {
 }
 
 h1 {
-    color: #4682B4;
-    font-size: 24px;
+    color:#e67e22;
+    font-size: 28px;
     text-align: center;
     margin-bottom: 20px;
 }
@@ -28,7 +28,7 @@ h1 {
 }
 
 .form-card {
-    background: linear-gradient(135deg, #D8B800, #4682B4);
+    background: linear-gradient(135deg, #e67e22, #34495e);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 15px;
     padding: 40px;
@@ -115,7 +115,7 @@ input:focus, textarea:focus, select:focus {
 /* Button Styles */
 .submit-button {
     padding: 15px;
-    background-color: #D8B800;
+    background-color: #e67e22;
     border-radius: 8px;
     border: none;
     font-size: 18px;
@@ -126,12 +126,12 @@ input:focus, textarea:focus, select:focus {
 }
 
 .submit-button:hover {
-    background-color: #C75B42;
+    background-color: #34495e;
 }
 
 /* Hover and Focus Effects */
 .input-group input:focus, .input-group select:focus, .input-group textarea:focus {
-    border: 2px solid #D8B800;
+    border: 2px solid #e67e22;
 }
 
 /* Back Link */
@@ -139,6 +139,7 @@ input:focus, textarea:focus, select:focus {
     text-decoration: none;
     color: #fff;
     font-size: 14px;
+    font-weight: bold; 
     margin-top: 20px;
     display: inline-block;
     text-align: center;
@@ -146,7 +147,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 .back-link:hover {
-    color: #C75B42;
+    color: #e67e22;
 }
 
 /* Animations */

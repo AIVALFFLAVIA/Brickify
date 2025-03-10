@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task List</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/templates.css' %}">
-    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templates.css' %}?v=3">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}?v=3">
 </head>
 <body>
 
@@ -71,7 +71,7 @@
                         </tr>
                     {% empty %}
                         <tr>
-                            <td colspan="6">No tasks found matching the filters.</td>
+                            <td colspan="6">No tasks found.</td>
                         </tr>
                     {% endfor %}
                 </tbody>
