@@ -45,11 +45,9 @@ Installation
 Troubleshooting
 
 •	Migrations issue? Run: 
-
 •	python manage.py makemigrations && python manage.py migrate  
 
 •	Static files not loading? Run: 
-
 •	python manage.py collectstatic  
 
 •	Permission issues? Check user roles in the admin panel.
