@@ -1,6 +1,7 @@
+
 Brickify
 Overview
-Brickify is a web-based application for construction company leaders to manage their business efficiently. It provides tools for handling companies, projects, tasks, employees, materials, suppliers, financial transactions, and equipment.
+Brickify is a web-based application for construction company leaders to manage their business efficiently. It provides tools for handling companies, projects, tasks, employees, materials, suppliers, financial transactions, and equipment. 
 Features
 •	User Authentication: Login, register, and logout functionality.
 •	Role-Based Access Control: Company leaders manage only their data.
